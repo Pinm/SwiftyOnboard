@@ -247,8 +247,10 @@ public class SwiftyOnboard: UIView, UIScrollViewDelegate {
     
     open func goToPage(index: Int, animated: Bool) {
         if index < self.pageCount {
-            let index = CGFloat(index)
-            containerView.setContentOffset(CGPoint(x: index * self.frame.width, y: 0), animated: animated)
+            let contentOffset = CGPoint(x: CGFloat(index) * self.frame.width, y: 0)
+            containerView.setContentOffset(contentOffset, animated: animated)
+            
+            delegate?.swiftyOnboard(self, currentPage: index)
         }
     }
 }
